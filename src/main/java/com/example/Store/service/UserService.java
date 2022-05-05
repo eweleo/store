@@ -1,8 +1,9 @@
 package com.example.Store.service;
 
 
-import com.example.Store.model.Order;
-import com.example.Store.model.User;
+import com.example.Store.entities.Order;
+import com.example.Store.entities.User;
+import com.example.Store.repositories.OrderRepository;
 import com.example.Store.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final OrderService orderService;
+    private final OrderRepository orderRepository;
 
     public User create(String name, String surname) {
         User user = new User(name, surname);
@@ -54,6 +56,10 @@ public class UserService {
             Optional<Order> order = orders.stream().filter(order1 -> order1.getDone() == false).findFirst();
             orderService.delete(order.get().getId());
         }
+        user.setOrders(null);
+        userRepository.save(user);
+        orders.stream().peek(order -> order.setUser(null)).forEach(order -> orderRepository.save(order));
+
         userRepository.delete(user);
     }
 }

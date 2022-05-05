@@ -1,15 +1,15 @@
 package com.example.Store.controller;
 
 
-import com.example.Store.model.Order;
+import com.example.Store.entities.Order;
+import com.example.Store.entities.User;
 import com.example.Store.service.OrderService;
+import com.example.Store.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -18,9 +18,8 @@ import java.util.List;
 public class OrderController {
 
     final List list;
-
-
     private final OrderService orderService;
+    private final UserService userService;
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     ResponseEntity<List<Order>> readAll() {
@@ -60,6 +59,16 @@ public class OrderController {
             return ResponseEntity.notFound().build();
         orderService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/orders")
+    ResponseEntity<Order> createOrder(@RequestBody User user){
+        System.out.println("\n" + user.getId());
+        if(!userService.existsById(user.getId())){
+            return ResponseEntity.notFound().build();
+        }
+        Order order = orderService.create(user.getId());
+        return ResponseEntity.created(URI.create("/" + order.getId())).body(order);
     }
 
 

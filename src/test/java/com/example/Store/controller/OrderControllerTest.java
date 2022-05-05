@@ -1,7 +1,7 @@
 package com.example.Store.controller;
 
-import com.example.Store.model.Order;
-import com.example.Store.model.User;
+import com.example.Store.entities.Order;
+import com.example.Store.entities.User;
 import com.example.Store.service.OrderService;
 import com.example.Store.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;

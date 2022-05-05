@@ -1,4 +1,4 @@
-package com.example.Store.model;
+package com.example.Store.entities;
 
 import lombok.NoArgsConstructor;
 import lombok.ToString;

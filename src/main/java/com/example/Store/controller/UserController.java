@@ -1,6 +1,6 @@
 package com.example.Store.controller;
 
-import com.example.Store.model.User;
+import com.example.Store.entities.User;
 import com.example.Store.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PATCH, value = "/users/{id}")
-    ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody @Valid User toUpdate) {
+    ResponseEntity<User> updateUser(@PathVariable int id,@Valid @RequestBody User toUpdate) {
         if (!userService.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

@@ -1,6 +1,6 @@
 package com.example.Store.controller;
 
-import com.example.Store.model.User;
+import com.example.Store.entities.User;
 import com.example.Store.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;

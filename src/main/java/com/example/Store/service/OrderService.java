@@ -1,7 +1,7 @@
 package com.example.Store.service;
 
-import com.example.Store.model.Order;
-import com.example.Store.model.User;
+import com.example.Store.entities.Order;
+import com.example.Store.entities.User;
 import com.example.Store.repositories.OrderRepository;
 import com.example.Store.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +36,8 @@ public class OrderService {
         User user = userRepository.getById(userId);
 
 
-        if (userRepository.getById(userId).getOrders().stream().anyMatch(order1 -> order1.getDone() == false)) {
-            return userRepository.getById(userId).getOrders().stream().findAny().get();
+        if (userRepository.getById(userId).getOrders().stream().filter(order1 -> order1.getDone() == false).count() !=0 ) {
+            return userRepository.getById(userId).getOrders().stream().filter(order1 -> order1.getDone() == false).findAny().get();
         }
         order.setUser(user);
         return orderRepository.save(order);

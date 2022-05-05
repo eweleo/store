@@ -1,4 +1,4 @@
-package com.example.Store.model;
+package com.example.Store.entities;
 
 import lombok.NoArgsConstructor;
 
@@ -6,7 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +16,11 @@ import java.util.List;
 @NoArgsConstructor
 public class User extends AbstractEntity {
 
-    @NotNull
+    @NotBlank
     private String name;
-    @NotNull
+    @NotBlank
     private String surname;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user"/*, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE}*/)
     List<Order> orders = new ArrayList<>();
 
     public User(String name, String surname) {

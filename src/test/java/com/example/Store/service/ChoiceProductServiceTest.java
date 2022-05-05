@@ -1,9 +1,9 @@
 package com.example.Store.service;
 
-import com.example.Store.model.ChoiceProduct;
-import com.example.Store.model.Order;
-import com.example.Store.model.Product;
-import com.example.Store.model.User;
+import com.example.Store.entities.ChoiceProduct;
+import com.example.Store.entities.Order;
+import com.example.Store.entities.Product;
+import com.example.Store.entities.User;
 import com.example.Store.repositories.ChoiceProductRepository;
 import com.example.Store.repositories.ProductsRepository;
 import com.example.Store.repositories.UserRepository;

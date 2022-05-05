@@ -1,6 +1,7 @@
-package com.example.Store.model;
+package com.example.Store.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 public class Order extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
     private User user;
     private boolean isDone = false;
@@ -62,6 +63,7 @@ public class Order extends AbstractEntity {
         return super.getId();
     }
 
+    @JsonIgnore
     public int getUserId() {
         return user.getId();
     }

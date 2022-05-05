@@ -1,4 +1,4 @@
-package com.example.Store.model;
+package com.example.Store.entities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,4 +18,6 @@ public abstract class AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+
 }

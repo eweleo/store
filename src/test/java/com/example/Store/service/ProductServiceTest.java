@@ -1,6 +1,6 @@
 package com.example.Store.service;
 
-import com.example.Store.model.Product;
+import com.example.Store.entities.Product;
 import com.example.Store.repositories.ProductsRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

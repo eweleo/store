@@ -1,8 +1,8 @@
 package com.example.Store.controller;
 
 import com.example.Store.model.AddPositionToOrder;
-import com.example.Store.model.ChoiceProduct;
-import com.example.Store.model.Order;
+import com.example.Store.entities.ChoiceProduct;
+import com.example.Store.entities.Order;
 import com.example.Store.service.ChoiceProductService;
 import com.example.Store.service.InventoryService;
 import com.example.Store.service.OrderService;

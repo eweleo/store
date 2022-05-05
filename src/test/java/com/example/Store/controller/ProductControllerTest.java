@@ -1,6 +1,6 @@
 package com.example.Store.controller;
 
-import com.example.Store.model.Product;
+import com.example.Store.entities.Product;
 import com.example.Store.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;

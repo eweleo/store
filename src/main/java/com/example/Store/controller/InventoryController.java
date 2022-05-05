@@ -1,13 +1,17 @@
 package com.example.Store.controller;
 
-import com.example.Store.model.Inventory;
+import com.example.Store.model.AddProductWithQuantity;
+import com.example.Store.entities.Inventory;
+import com.example.Store.entities.Product;
 import com.example.Store.service.InventoryService;
+import com.example.Store.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +22,7 @@ public class InventoryController {
 
 
     private final InventoryService inventoryService;
+    private final ProductService productService;
 
 
     @GetMapping("/inventory")
@@ -52,4 +57,11 @@ public class InventoryController {
         inventoryService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @RequestMapping(method = RequestMethod.POST, value = "/inventory")
+    ResponseEntity<Inventory> createInventory(@RequestBody @Valid AddProductWithQuantity addProductWithQuantity){
+        Product product = productService.create(addProductWithQuantity.getName(), addProductWithQuantity.getQuantity());
+        Inventory inventory = inventoryService.findByProductId(product.getId());
+        return ResponseEntity.created(URI.create("/" + inventory.getId())).body(inventory);
+    }
+
 }

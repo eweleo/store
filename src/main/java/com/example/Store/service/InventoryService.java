@@ -1,7 +1,7 @@
 package com.example.Store.service;
 
-import com.example.Store.model.Inventory;
-import com.example.Store.model.Product;
+import com.example.Store.entities.Inventory;
+import com.example.Store.entities.Product;
 import com.example.Store.repositories.InventoryRepository;
 import com.example.Store.repositories.ProductsRepository;
 import lombok.RequiredArgsConstructor;
